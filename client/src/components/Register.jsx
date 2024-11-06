@@ -27,7 +27,7 @@ function Register({ isAuthenticated, setIsAuthenticated }) {
     formData.append("password", password);
     formData.append("avatar", avatar);
     await axios
-      .post("https://project-management1.netlify.app/.netlify/functions/server/api/v1/user/register", formData, {
+      .post("https://vercel.com/akinola-adewoles-projects/project-management1/HGGu6F8taBLioWdhnWGq79DLyLNM/api/v1/user/register", formData, {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" },
       })
