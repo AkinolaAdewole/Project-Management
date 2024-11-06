@@ -14,9 +14,10 @@ dotenv.config();
 
 app.use(
   cors({
-    origin: 'http://localhost:5174', // Replace with your frontend URL
+    // origin: 'http://localhost:5174', 
+    origin:  'https://project-management1.netlify.app/login',
     methods: ["GET", "PUT", "DELETE", "POST"],
-    credentials: true, // Allow cookies or credentials to be sent
+    credentials: true, 
   })
 );
 
@@ -34,6 +35,9 @@ app.use(
 
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/task", taskRouter);
+app.get('/', (req,res)=>{
+  res.send({message:"Hello world"});
+});
 
 dbConnection();
 

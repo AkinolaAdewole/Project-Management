@@ -14,7 +14,8 @@ function Login({ isAuthenticated, setIsAuthenticated }) {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:4000/api/v1/user/login",
+        // "http://localhost:4000/api/v1/user/login",
+        "https://project-management1.netlify.app/.netlify/functions/server/api/v1/user/login",
         { email, password },
         {
           withCredentials: true,
