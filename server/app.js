@@ -12,14 +12,15 @@ const app = express();
 dotenv.config();
 
 
-app.use(
-  cors({
-    // origin: 'http://localhost:5174', 
-    origin:  'https://project-management1.netlify.app/login',
-    methods: ["GET", "PUT", "DELETE", "POST"],
-    credentials: true, 
-  })
-);
+// app.use(
+//   cors({
+//     origin: 'http://localhost:5173', 
+//     origin:  'https://project-management1.netlify.app',
+//     methods: ["GET", "PUT", "DELETE", "POST"],
+//     credentials: true, 
+//   })
+// );
+app.use(cors());
 
 
 app.use(cookieParser());
@@ -33,10 +34,14 @@ app.use(
   })
 );
 
-app.use("/api/v1/user", userRouter);
-app.use("/api/v1/task", taskRouter);
+app.use("/user", userRouter);
+app.use("/task", taskRouter);
 app.get('/', (req,res)=>{
   res.send({message:"Hello world"});
+});
+
+app.get('/user/login', (req,res)=>{
+  res.send({message:"Login Successfully"});
 });
 
 dbConnection();

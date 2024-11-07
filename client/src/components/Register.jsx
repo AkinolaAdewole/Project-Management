@@ -27,7 +27,7 @@ function Register({ isAuthenticated, setIsAuthenticated }) {
     formData.append("password", password);
     formData.append("avatar", avatar);
     await axios
-      .post("https://vercel.com/akinola-adewoles-projects/project-management1/HGGu6F8taBLioWdhnWGq79DLyLNM/api/v1/user/register", formData, {
+      .post(" https://project-management1-bb1sx9v30-akinola-adewoles-projects.vercel.app/user/register", formData, {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" },
       })
