@@ -14,8 +14,8 @@ function Login({ isAuthenticated, setIsAuthenticated }) {
     e.preventDefault();
     axios
       .post(
-        // "http://localhost:4000/api/v1/user/login",
-        "https://project-management1-bb1sx9v30-akinola-adewoles-projects.vercel.app/user/login",
+        "http://localhost:4000/user/login",
+        // "https://project-management1-akinolaadewole-akinola-adewoles-projects.vercel.app/user/login",
         { email, password },
         {
           withCredentials: true,
@@ -26,6 +26,7 @@ function Login({ isAuthenticated, setIsAuthenticated }) {
         setEmail("");
         setPassword("");
         setIsAuthenticated(true);
+        
         toast.success(res.data.message);
       })
       .catch((error) => {

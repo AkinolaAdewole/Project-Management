@@ -1,11 +1,21 @@
 import React from "react";
 import { Container, Stack } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
 
 const Profile = ({ user, isAuthenticated }) => {
+  const [token, setToken] = useState(null);
+
   if (!isAuthenticated) {
     return <Navigate to={"/login"} />;
   }
+  useEffect(() => {
+    const savedToken = Cookies.get("token");
+    console.log("Token from cookie:", savedToken);
+    setToken(savedToken);
+  }, []);
+  
   return (
     <>
       <Container className="my-4">

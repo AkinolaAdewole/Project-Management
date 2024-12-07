@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Stack } from "react-bootstrap";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
 
 const UpdateTaskModal = ({
   showUpdateModal,
@@ -13,11 +14,19 @@ const UpdateTaskModal = ({
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("incomplete");
   const [archived, setArchived] = useState(false);
+  const [token, setToken] = useState(null);
+
+  
+  useEffect(() => {
+    const savedToken = Cookies.get("token"); 
+    console.log(savedToken);
+        setToken(savedToken);
+}, []);
 
   useEffect(() => {
     const getSingleTask = async () => {
       await axios
-        .get(`http://localhost:4000/api/v1/task/single/${id}`, {
+        .get(`http://localhost:4000/task/single/${id}`, {
           withCredentials: true,
         })
         .then((res) => {
@@ -38,7 +47,7 @@ const UpdateTaskModal = ({
   const handleUpdateTask = async () => {
     await axios
       .put(
-        `http://localhost:4000/api/v1/task/update/${id}`,
+        `http://localhost:4000/task/update/${id}`,
         {
           title,
           description,

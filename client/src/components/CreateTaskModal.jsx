@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Stack } from "react-bootstrap";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
 
 const CreateTaskModal = ({
   showCreateModal,
@@ -10,15 +11,25 @@ const CreateTaskModal = ({
 }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    const savedToken = Cookies.get("token"); 
+    console.log(savedToken);
+        setToken(savedToken);
+}, []);
+
+  
 
   const handleCreateTask = async () => {
     await axios
       .post(
-        "http://localhost:4000/api/v1/task/post",
+        "http://localhost:4000/task/post",
         { title, description },
         {
           withCredentials: true,
           headers: { "Content-Type": "application/json" },
+          Authorization: `Bearer ${token}` 
         }
       )
       .then((res) => {

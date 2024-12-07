@@ -24,10 +24,10 @@ function Header({
   const fetchTasks = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/api/v1/task/mytask",
+        "http://localhost:4000/task/mytask",
         { withCredentials: true }
       );
-      setAllTasks(response.data.tasks);
+      setAllTasks(response.data.tasks); 
       setTasks(response.data.tasks); // Update tasks with fetched tasks
     } catch (error) {
       console.error("Error fetching tasks:", error);
@@ -37,7 +37,7 @@ function Header({
   const handleLogout = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/v1/user/logout",
+        "http://localhost:4000/user/logout",
         { withCredentials: "true" }
       );
       toast.success(data.message);

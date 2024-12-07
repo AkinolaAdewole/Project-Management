@@ -17,7 +17,8 @@ const App = () => {
     const handleGetUser = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:4000/api/v1/user/me",
+          // "https://project-management1-akinolaadewole-akinola-adewoles-projects.vercel.app/user/me",
+          "http://localhost:4000/user/me",
           { withCredentials: true }
         );
         setIsAuthenticated(true);

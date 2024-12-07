@@ -12,15 +12,18 @@ const app = express();
 dotenv.config();
 
 
-// app.use(
-//   cors({
-//     origin: 'http://localhost:5173', 
-//     origin:  'https://project-management1.netlify.app',
-//     methods: ["GET", "PUT", "DELETE", "POST"],
-//     credentials: true, 
-//   })
-// );
-app.use(cors());
+
+app.use(
+  cors({
+    origin: ['http://localhost:5173', 'https://project-management1.netlify.app'],
+    methods: ["GET", "PUT", "DELETE", "POST"],
+    credentials: true, 
+  })
+);
+
+
+
+
 
 
 app.use(cookieParser());

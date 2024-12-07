@@ -2,13 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Stack } from "react-bootstrap";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
 
 const ViewTaskModal = ({ showViewModal, handleViewModalClose, id }) => {
   const [task, setTask] = useState([]);
   useEffect(() => {
     const getSingleTask = async () => {
       await axios
-        .get(`http://localhost:4000/api/v1/task/single/${id}`, {
+        .get(`http://localhost:4000/task/single/${id}`, {
           withCredentials: true,
         })
         .then((res) => {

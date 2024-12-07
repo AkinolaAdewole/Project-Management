@@ -53,50 +53,20 @@ export const register = catchAsyncErrors(async (req, res, next) => {
   sendToken("User Registered!", user, res, 200);
 });
 
-// export const login = catchAsyncErrors(async (req, res, next) => {
-//   const { email, password } = req.body;
-//   if (!email || !password) {
-//     return next(new ErrorHandler("Please provide email and password!", 400));
-//   }
-//   const user = await User.findOne({ email }).select("+password");
-//   if (!user) {
-//     return next(new ErrorHandler("Invalid email  or password!", 400));
-//   }
-//   const isPasswordMatched = await user.comparePassword(password);
-//   if (!isPasswordMatched) {
-//     return next(new ErrorHandler("Invalid email  or password!", 400));
-//   }
-//   sendToken("User Logged In!", user, res, 200);
-// });
-
 export const login = catchAsyncErrors(async (req, res, next) => {
   const { email, password } = req.body;
-  console.log("Login request received with:", email, password);
-
   if (!email || !password) {
-    console.log("Email or password missing");
     return next(new ErrorHandler("Please provide email and password!", 400));
   }
-
   const user = await User.findOne({ email }).select("+password");
   if (!user) {
-    console.log("User not found in database");
-    return next(new ErrorHandler("Invalid email or password!", 400));
+    return next(new ErrorHandler("Invalid email  or password!", 400));
   }
-
   const isPasswordMatched = await user.comparePassword(password);
   if (!isPasswordMatched) {
-    console.log("Password does not match");
-    return next(new ErrorHandler("Invalid email or password!", 400));
+    return next(new ErrorHandler("Invalid email  or password!", 400));
   }
-
-  try {
-    console.log("Sending token...");
-    sendToken("User Logged In!", user, res, 200);
-  } catch (error) {
-    console.error("Error sending token:", error); 
-    return next(new ErrorHandler("Server error: Could not log in user", 500));
-  }
+  sendToken("User Logged In!", user, res, 200);
 });
 
 

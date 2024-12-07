@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import validator from "validator";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const userSchema = new mongoose.Schema({
@@ -60,11 +60,11 @@ userSchema.methods.getJWTToken = function () {
   });
 };
 
-// userSchema.methods.getJWTToken = function () {
-//   return jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, {
-//     expiresIn: "1d",  
-//   });
-// };
+userSchema.methods.getJWTToken = function () {
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, {
+    expiresIn: "1d",  
+  });
+};
 
 
 export const User = mongoose.model("User", userSchema);
